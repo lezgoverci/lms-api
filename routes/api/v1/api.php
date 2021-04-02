@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,8 +16,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::prefex("/user")->group(function(){
-    Route::post('/login','api\v1\LoginController@login');
+Route::prefix("/user")->middleware('auth:api')->group(function(){
+    Route::post('/store', [UserController::class, 'store']);
+});
+
+Route::prefix("/user")->group(function(){
+    Route::post('/login',[LoginController::class, 'login']);
 });
 
 // Route::middleware('auth:api')->get('/user', function (Request $request) {
