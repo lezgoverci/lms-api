@@ -16,12 +16,10 @@ use App\Http\Controllers\LoginController;
 |
 */
 
-Route::prefix("/user")->middleware('auth:api')->group(function(){
-    Route::post('/store', [UserController::class, 'store']);
-});
 
 Route::prefix("/user")->group(function(){
     Route::post('/login',[LoginController::class, 'login']);
+    Route::post('/store', [UserController::class, 'store']);
 });
 
 // Route::middleware('auth:api')->get('/user', function (Request $request) {
