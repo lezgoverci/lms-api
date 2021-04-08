@@ -16,7 +16,7 @@ class LoginController extends Controller
         ]);
 
         if(!Auth::attempt($login)){
-            return response(['message' => 'failed login']);
+            return response(['message' => 'failed login'], 422);
         }
 
         $user = Auth::user();
