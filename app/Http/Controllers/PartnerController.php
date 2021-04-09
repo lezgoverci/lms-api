@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Partner;
 use Illuminate\Http\Request;
 
 class PartnerController extends Controller
@@ -13,7 +14,9 @@ class PartnerController extends Controller
      */
     public function index()
     {
-        //
+        $partners = Partner::all();
+
+        return response(['partners' => $partners]);
     }
 
     /**
@@ -24,7 +27,16 @@ class PartnerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'name' => 'required|string'
+        ]);
+
+        $partner = new Partner;
+        $partner->status = 'active';
+        $partner->name = $request->name;
+        $partner->save();
+
+        return response(['partner' => $partner]);
     }
 
     /**
@@ -35,7 +47,13 @@ class PartnerController extends Controller
      */
     public function show($id)
     {
-        //
+        $partner = Partner::find($id);
+        if($partner){
+            return response(['partner' => $partner]);
+        }else{
+            return response(['message' => 'Partner not found'], 404);
+        }
+
     }
 
     /**
@@ -47,7 +65,19 @@ class PartnerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+
+        $partner = Partner::find($id);
+        if($partner){
+            $partner->name = $request->name;
+            $partner->logo = $request->logo;
+            $partner->status = $request->status;
+            $partner->save();
+            return response(['partner' => $partner]);
+        }else{
+            return response(['message' => 'Partner not found'], 404);
+        }
+
     }
 
     /**
@@ -58,6 +88,13 @@ class PartnerController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $partner = Partner::find($id);
+
+        if($partner){
+            $partner->delete();
+            return response(['partner' => $partner]);
+        }else{
+            return response(['message' => 'Partner not found'], 404);
+        }
     }
 }

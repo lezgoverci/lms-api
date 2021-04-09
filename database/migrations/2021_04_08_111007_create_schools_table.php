@@ -16,7 +16,9 @@ class CreateSchoolsTable extends Migration
         Schema::create('schools', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->integer('client_id');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

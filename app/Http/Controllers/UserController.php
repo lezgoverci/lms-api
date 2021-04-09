@@ -15,7 +15,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $users = User::all();
+
+        return response(['users' => $users]);
     }
 
     /**
@@ -48,7 +50,12 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::find($id);
+        if($user){
+            return response(['user' => $user]);
+        }else{
+            return response(['message' => 'User not found'], 404);
+        }
     }
 
     /**
@@ -60,7 +67,16 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::find($id);
+        if($user){
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->school_id = $request->school_id;
+            $user->save();
+            return response(['user' => $user]);
+        }else{
+            return response(['message' => 'User not found'], 404);
+        }
     }
 
     /**
@@ -71,6 +87,13 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::find($id);
+
+        if($user){
+            $user->delete();
+            return response(['user' => $user]);
+        }else{
+            return response(['message' => 'User not found'], 404);
+        }
     }
 }

@@ -14,7 +14,9 @@ class ClientController extends Controller
      */
     public function index()
     {
-        //
+        $clients = Client::all();
+
+        return response(['clients' => $clients]);
     }
 
     /**
@@ -44,7 +46,15 @@ class ClientController extends Controller
      */
     public function show($id)
     {
-        //
+        $client = Client::find($id);
+        if($client){
+            return response(['client' => $client]);
+        }else{
+            return response(['message' => 'Client not found'], 404);
+        }
+
+
+
     }
 
     /**
@@ -56,7 +66,21 @@ class ClientController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->validate([
+            'name' => 'required|string',
+        ]);
+
+        $client = Client::find($id);
+        if($client){
+            $client->name = $request->name;
+            $client->save();
+            return response(['client' => $client]);
+        }else{
+            return response(['message' => 'Client not found'], 404);
+        }
+
+
+
     }
 
     /**
@@ -67,6 +91,13 @@ class ClientController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $client = Client::find($id);
+
+        if($client){
+            $client->delete();
+            return response(['client' => $client]);
+        }else{
+            return response(['message' => 'Client not found'], 404);
+        }
     }
 }

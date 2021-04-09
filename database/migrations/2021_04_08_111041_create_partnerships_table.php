@@ -19,6 +19,7 @@ class CreatePartnershipsTable extends Migration
             $table->integer('partner_id');
             $table->integer('school_id');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

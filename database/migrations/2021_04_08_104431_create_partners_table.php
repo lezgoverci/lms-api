@@ -19,6 +19,7 @@ class CreatePartnersTable extends Migration
             $table->string('logo');
             $table->string('status');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

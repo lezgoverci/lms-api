@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\School;
 use Illuminate\Http\Request;
 
 class SchoolController extends Controller
@@ -13,7 +14,9 @@ class SchoolController extends Controller
      */
     public function index()
     {
-        //
+        $schools = School::all();
+
+        return response(['schools' => $schools]);
     }
 
     /**
@@ -24,7 +27,16 @@ class SchoolController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'name' => 'required|string',
+        ]);
+
+        $school = new School;
+        $school->name = $request->name;
+        $school->client_id = $request->client_id;
+        $school->save();
+
+        return response(['school' => $school]);
     }
 
     /**
@@ -35,7 +47,12 @@ class SchoolController extends Controller
      */
     public function show($id)
     {
-        //
+        $school = School::find($id);
+        if($school){
+            return response(['school' => $school]);
+        }else{
+            return response(['message' => 'School not found'], 404);
+        }
     }
 
     /**
@@ -47,7 +64,15 @@ class SchoolController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $school = School::find($id);
+        if($school){
+            $school->name = $request->name;
+            $school->client_id = $request->client_id;
+            $school->save();
+            return response(['school' => $school]);
+        }else{
+            return response(['message' => 'School not found'], 404);
+        }
     }
 
     /**
@@ -58,6 +83,13 @@ class SchoolController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $school = School::find($id);
+
+        if($school){
+            $school->delete();
+            return response(['school' => $school]);
+        }else{
+            return response(['message' => 'School not found'], 404);
+        }
     }
 }
