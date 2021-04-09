@@ -28,13 +28,15 @@ Route::prefix("/user")->group(function(){
 
 Route::middleware('auth:api')->group(function(){
 
-
     Route::prefix("/user")->group(function(){
+        Route::post('/school', [UserController::class, 'setSchool']);
+        Route::get('/{id}/school', [UserController::class, 'getSchool']);
         Route::get('/', [UserController::class, 'index']);
         Route::post('/', [UserController::class, 'store']);
         Route::get('/{id}', [UserController::class, 'show']);
         Route::post('/{id}', [UserController::class, 'update']);
         Route::delete('/{id}', [UserController::class, 'destroy']);
+
     });
 
     Route::prefix("/client")->group(function(){
