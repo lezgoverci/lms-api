@@ -98,35 +98,35 @@ class UserController extends Controller
         }
     }
 
-    public function setSchool(Request $request){
-        $data = $request->validate([
-            'user_id' => 'required|integer',
-            'school_id' => 'required|integer'
-        ]);
+    // public function setSchool(Request $request){
+    //     $data = $request->validate([
+    //         'user_id' => 'required|integer',
+    //         'school_id' => 'required|integer'
+    //     ]);
 
-        $user = User::find($request->user_id);
-        $school = School::find($request->school_id);
+    //     $user = User::find($request->user_id);
+    //     $school = School::find($request->school_id);
 
-        if($user && $school){
-            $user->school()->associate($school);
-            $user->save();
-            return response(['user' => $user]);
-        }else{
-            return response(['message' => 'User or School not found'], 404);
-        }
-    }
+    //     if($user && $school){
+    //         $user->school()->associate($school);
+    //         $user->save();
+    //         return response(['user' => $user]);
+    //     }else{
+    //         return response(['message' => 'User or School not found'], 404);
+    //     }
+    // }
 
-    public function getSchool($user_id){
-
-
-        $user = User::find($user_id);
+    // public function getSchool($user_id){
 
 
-        if($user){
-            $school = $user->school;
-            return response(['school' => $school]);
-        }else{
-            return response(['message' => 'User not found'], 404);
-        }
-    }
+    //     $user = User::find($user_id);
+
+
+    //     if($user){
+    //         $school = $user->school;
+    //         return response(['school' => $school]);
+    //     }else{
+    //         return response(['message' => 'User not found'], 404);
+    //     }
+    // }
 }

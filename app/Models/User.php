@@ -14,7 +14,7 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
 
-    protected $with = ['school'];
+    // protected $with = ['school'];
 
     /**
      * The attributes that are mass assignable.
@@ -46,7 +46,5 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function school(){
-        return $this->belongsTo(School::class);
-    }
+
 }
