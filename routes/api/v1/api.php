@@ -8,6 +8,7 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\PartnershipController;
 use App\Http\Controllers\SchoolController;
+use App\Http\Controllers\StudentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,7 +30,6 @@ Route::prefix("/user")->group(function(){
 Route::middleware('auth:api')->group(function(){
 
     Route::prefix("/user")->group(function(){
-
         Route::get('/', [UserController::class, 'index']);
         Route::post('/', [UserController::class, 'store']);
         Route::get('/{id}', [UserController::class, 'show']);
@@ -68,5 +68,13 @@ Route::middleware('auth:api')->group(function(){
         Route::get('/{id}', [SchoolController::class, 'show']);
         Route::post('/{id}', [SchoolController::class, 'update']);
         Route::delete('/{id}', [SchoolController::class, 'destroy']);
+    });
+
+    Route::prefix("/student")->group(function(){
+        Route::get('/', [StudentController::class, 'index']);
+        Route::post('/', [StudentController::class, 'store']);
+        Route::get('/{id}', [StudentController::class, 'show']);
+        Route::post('/{id}', [StudentController::class, 'update']);
+        Route::delete('/{id}', [StudentController::class, 'destroy']);
     });
 });
