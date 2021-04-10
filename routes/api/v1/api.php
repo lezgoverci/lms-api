@@ -13,6 +13,7 @@ use App\Http\Controllers\FacultyController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\MentorController;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -112,5 +113,13 @@ Route::middleware('auth:api')->group(function(){
         Route::get('/{id}', [MentorController::class, 'show']);
         Route::post('/{id}', [MentorController::class, 'update']);
         Route::delete('/{id}', [MentorController::class, 'destroy']);
+    });
+
+    Route::prefix("/post")->group(function(){
+        Route::get('/', [PostController::class, 'index']);
+        Route::post('/', [PostController::class, 'store']);
+        Route::get('/{id}', [PostController::class, 'show']);
+        Route::post('/{id}', [PostController::class, 'update']);
+        Route::delete('/{id}', [PostController::class, 'destroy']);
     });
 });
