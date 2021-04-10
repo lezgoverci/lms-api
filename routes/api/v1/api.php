@@ -9,6 +9,7 @@ use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\PartnershipController;
 use App\Http\Controllers\SchoolController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\FacultyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -76,5 +77,13 @@ Route::middleware('auth:api')->group(function(){
         Route::get('/{id}', [StudentController::class, 'show']);
         Route::post('/{id}', [StudentController::class, 'update']);
         Route::delete('/{id}', [StudentController::class, 'destroy']);
+    });
+
+    Route::prefix("/faculty")->group(function(){
+        Route::get('/', [FacultyController::class, 'index']);
+        Route::post('/', [FacultyController::class, 'store']);
+        Route::get('/{id}', [FacultyController::class, 'show']);
+        Route::post('/{id}', [FacultyController::class, 'update']);
+        Route::delete('/{id}', [FacultyController::class, 'destroy']);
     });
 });
