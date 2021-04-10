@@ -12,6 +12,7 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\FacultyController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\MentorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -103,5 +104,13 @@ Route::middleware('auth:api')->group(function(){
         Route::get('/{id}', [EventController::class, 'show']);
         Route::post('/{id}', [EventController::class, 'update']);
         Route::delete('/{id}', [EventController::class, 'destroy']);
+    });
+
+    Route::prefix("/mentor")->group(function(){
+        Route::get('/', [MentorController::class, 'index']);
+        Route::post('/', [MentorController::class, 'store']);
+        Route::get('/{id}', [MentorController::class, 'show']);
+        Route::post('/{id}', [MentorController::class, 'update']);
+        Route::delete('/{id}', [MentorController::class, 'destroy']);
     });
 });
