@@ -93,4 +93,43 @@ class FacultyController extends Controller
             return response(['message' => 'Faculty not found'], 404);
         }
     }
+
+    /**
+     * Add a course to a faculty
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function setCourse(Request $request, $id){
+
+        $data = $request->validate([
+            'course_id' => 'required|integer',
+        ]);
+
+        $faculty = Faculty::find($id);
+
+        $faculty->courses()->attach($request->course_id);
+
+        return response(['faculty' => $faculty]);
+    }
+
+    /**
+     * Get all courses
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function getCourses($id){
+
+
+        $faculty = Faculty::find($id);
+        if($faculty){
+            return response(['courses' => $faculty->courses]);
+        }else{
+            return response(['message' => 'Faculty not found'], 404);
+        }
+
+
+    }
 }

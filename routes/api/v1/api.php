@@ -88,14 +88,26 @@ Route::middleware('auth:api')->group(function(){
     });
 
     Route::prefix("/faculty")->group(function(){
+
+        // Courses
+        Route::get('/{id}/getCourses', [FacultyController::class, 'getCourses']);
+        Route::post('/{id}/setCourse', [FacultyController::class, 'setCourse']);
+
         Route::get('/', [FacultyController::class, 'index']);
         Route::post('/', [FacultyController::class, 'store']);
         Route::get('/{id}', [FacultyController::class, 'show']);
         Route::post('/{id}', [FacultyController::class, 'update']);
         Route::delete('/{id}', [FacultyController::class, 'destroy']);
+
+
     });
 
     Route::prefix("/course")->group(function(){
+
+        //Faculties
+        Route::get('/{id}/getFaculties', [CourseController::class, 'getFaculties']);
+        Route::post('/{id}/setFaculty', [CourseController::class, 'setFaculty']);
+
         Route::get('/', [CourseController::class, 'index']);
         Route::post('/', [CourseController::class, 'store']);
         Route::get('/{id}', [CourseController::class, 'show']);

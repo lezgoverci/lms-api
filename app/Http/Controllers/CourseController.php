@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Faculty;
 use App\Models\Course;
 use Illuminate\Http\Request;
 
@@ -92,5 +93,44 @@ class CourseController extends Controller
         }else{
             return response(['message' => 'Course not found'], 404);
         }
+    }
+
+    /**
+     * Add a faculty to a course
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function setFaculty(Request $request, $id){
+
+        $data = $request->validate([
+            'faculty_id' => 'required|integer',
+        ]);
+
+        $course = Course::find($id);
+
+        $course->faculties()->attach($request->faculty_id);
+
+        return response(['course' => $course]);
+    }
+
+    /**
+     * Get all faculties
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function getCourses($id){
+
+
+        $course = Course::find($id);
+        if($course){
+            return response(['faculties' => $course->faculties]);
+        }else{
+            return response(['message' => 'Course not found'], 404);
+        }
+
+
     }
 }
