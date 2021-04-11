@@ -15,6 +15,7 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\MentorController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\ClientAdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -125,6 +126,14 @@ Route::middleware('auth:api')->group(function(){
     });
 
     Route::prefix("/role")->group(function(){
+        Route::get('/', [RoleController::class, 'index']);
+        Route::post('/', [RoleController::class, 'store']);
+        Route::get('/{id}', [RoleController::class, 'show']);
+        Route::post('/{id}', [RoleController::class, 'update']);
+        Route::delete('/{id}', [RoleController::class, 'destroy']);
+    });
+
+    Route::prefix("/client/admin")->group(function(){
         Route::get('/', [RoleController::class, 'index']);
         Route::post('/', [RoleController::class, 'store']);
         Route::get('/{id}', [RoleController::class, 'show']);
