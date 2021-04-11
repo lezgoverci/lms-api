@@ -17,6 +17,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\ClientAdminController;
 use App\Http\Controllers\MentorshipController;
+use App\Http\Controllers\PartnerAdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -148,5 +149,12 @@ Route::middleware('auth:api')->group(function(){
         Route::get('/{id}', [MentorshipController::class, 'show']);
         Route::post('/{id}', [MentorshipController::class, 'update']);
         Route::delete('/{id}', [MentorshipController::class, 'destroy']);
+    });
+    Route::prefix("/partner/admin")->group(function(){
+        Route::get('/', [PartnerAdminController::class, 'index']);
+        Route::post('/', [PartnerAdminController::class, 'store']);
+        Route::get('/{id}', [PartnerAdminController::class, 'show']);
+        Route::post('/{id}', [PartnerAdminController::class, 'update']);
+        Route::delete('/{id}', [PartnerAdminController::class, 'destroy']);
     });
 });
