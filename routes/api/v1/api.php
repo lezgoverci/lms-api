@@ -16,6 +16,7 @@ use App\Http\Controllers\MentorController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\ClientAdminController;
+use App\Http\Controllers\MentorshipController;
 
 /*
 |--------------------------------------------------------------------------
@@ -134,10 +135,18 @@ Route::middleware('auth:api')->group(function(){
     });
 
     Route::prefix("/client/admin")->group(function(){
-        Route::get('/', [RoleController::class, 'index']);
-        Route::post('/', [RoleController::class, 'store']);
-        Route::get('/{id}', [RoleController::class, 'show']);
-        Route::post('/{id}', [RoleController::class, 'update']);
-        Route::delete('/{id}', [RoleController::class, 'destroy']);
+        Route::get('/', [ClientAdminController::class, 'index']);
+        Route::post('/', [ClientAdminController::class, 'store']);
+        Route::get('/{id}', [ClientAdminController::class, 'show']);
+        Route::post('/{id}', [ClientAdminController::class, 'update']);
+        Route::delete('/{id}', [ClientAdminController::class, 'destroy']);
+    });
+
+    Route::prefix("/mentorship")->group(function(){
+        Route::get('/', [MentorshipController::class, 'index']);
+        Route::post('/', [MentorshipController::class, 'store']);
+        Route::get('/{id}', [MentorshipController::class, 'show']);
+        Route::post('/{id}', [MentorshipController::class, 'update']);
+        Route::delete('/{id}', [MentorshipController::class, 'destroy']);
     });
 });
