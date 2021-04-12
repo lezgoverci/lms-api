@@ -74,9 +74,13 @@ Route::middleware('auth:api')->group(function(){
     Route::prefix("/school")->group(function(){
 
 
+        //Faculties
+        Route::get('/{id}/faculty', [SchoolController::class, 'getFaculties']);
+        Route::post('/{id}/faculty', [SchoolController::class, 'setFaculty']);
+
         //Courses
-        Route::get('/{id}/getCourses', [SchoolController::class, 'getCourses']);
-        Route::post('/{id}/setCourse', [SchoolController::class, 'setCourse']);
+        Route::get('/{id}/course', [SchoolController::class, 'getCourses']);
+        Route::post('/{id}/course', [SchoolController::class, 'setCourse']);
 
         Route::get('/', [SchoolController::class, 'index']);
         Route::post('/', [SchoolController::class, 'store']);
@@ -95,9 +99,14 @@ Route::middleware('auth:api')->group(function(){
 
     Route::prefix("/faculty")->group(function(){
 
+
+        // Schools
+        Route::get('/{id}/school', [FacultyController::class, 'getSchools']);
+        Route::post('/{id}/school', [FacultyController::class, 'setSchool']);
+
         // Courses
-        Route::get('/{id}/getCourses', [FacultyController::class, 'getCourses']);
-        Route::post('/{id}/setCourse', [FacultyController::class, 'setCourse']);
+        Route::get('/{id}/course', [FacultyController::class, 'getCourses']);
+        Route::post('/{id}/course', [FacultyController::class, 'setCourse']);
 
         Route::get('/', [FacultyController::class, 'index']);
         Route::post('/', [FacultyController::class, 'store']);
@@ -112,12 +121,12 @@ Route::middleware('auth:api')->group(function(){
 
 
         //Schools
-        Route::get('/{id}/getSchools', [CourseController::class, 'getSchools']);
-        Route::post('/{id}/setSchool', [CourseController::class, 'setSchool']);
+        Route::get('/{id}/school', [CourseController::class, 'getSchools']);
+        Route::post('/{id}/school', [CourseController::class, 'setSchool']);
 
         //Faculties
-        Route::get('/{id}/getFaculties', [CourseController::class, 'getFaculties']);
-        Route::post('/{id}/setFaculty', [CourseController::class, 'setFaculty']);
+        Route::get('/{id}/faculty', [CourseController::class, 'getFaculties']);
+        Route::post('/{id}/faculty', [CourseController::class, 'setFaculty']);
 
         Route::get('/', [CourseController::class, 'index']);
         Route::post('/', [CourseController::class, 'store']);
