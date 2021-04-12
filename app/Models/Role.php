@@ -29,4 +29,8 @@ class Role extends Model
     public function clientAdmins(){
         return $this->hasMany(ClientAdmin::class);
     }
+
+    public function partnerAdmins(){
+        return $this->hasMany(PartnerAdmin::class);
+    }
 }
