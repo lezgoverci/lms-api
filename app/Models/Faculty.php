@@ -14,4 +14,8 @@ class Faculty extends Model
     public function courses(){
         return $this->belongsToMany(Course::class);
     }
+
+    public function schools(){
+        return $this->belongsToMany(School::class);
+    }
 }

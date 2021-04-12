@@ -132,4 +132,43 @@ class FacultyController extends Controller
 
 
     }
+
+    /**
+     * Add a school to a faculty
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function setSchool(Request $request, $id){
+
+        $data = $request->validate([
+            'school_id' => 'required|integer',
+        ]);
+
+        $faculty = Faculty::find($id);
+
+        $faculty->schools()->attach($request->school_id);
+
+        return response(['faculty' => $faculty]);
+    }
+
+    /**
+     * Get all schools
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function getSchools($id){
+
+
+        $faculty = Faculty::find($id);
+        if($faculty){
+            return response(['schools' => $faculty->schools]);
+        }else{
+            return response(['message' => 'Faculty not found'], 404);
+        }
+
+
+    }
 }
