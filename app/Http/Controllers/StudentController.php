@@ -109,4 +109,43 @@ class StudentController extends Controller
             return response(['message' => 'Student not found'], 404);
         }
     }
+
+    /**
+     * Add a school to a student
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function setSchool(Request $request, $id){
+
+        $data = $request->validate([
+            'school_id' => 'required|integer',
+        ]);
+
+        $student = Student::find($id);
+
+        $student->schools()->attach($request->school_id);
+
+        return response(['student' => $student]);
+    }
+
+    /**
+     * Get all schools
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function getSchools($id){
+
+
+        $student = Student::find($id);
+        if($student){
+            return response(['schools' => $student->schools]);
+        }else{
+            return response(['message' => 'Student not found'], 404);
+        }
+
+
+    }
 }

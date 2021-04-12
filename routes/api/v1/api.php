@@ -73,6 +73,9 @@ Route::middleware('auth:api')->group(function(){
 
     Route::prefix("/school")->group(function(){
 
+        //Students
+        Route::get('/{id}/student', [SchoolController::class, 'getStudents']);
+        Route::post('/{id}/student', [SchoolController::class, 'setStudent']);
 
         //Faculties
         Route::get('/{id}/faculty', [SchoolController::class, 'getFaculties']);
@@ -90,6 +93,12 @@ Route::middleware('auth:api')->group(function(){
     });
 
     Route::prefix("/student")->group(function(){
+
+        // Schools
+        Route::get('/{id}/school', [StudentController::class, 'getSchools']);
+        Route::post('/{id}/school', [StudentController::class, 'setSchool']);
+
+
         Route::get('/', [StudentController::class, 'index']);
         Route::post('/', [StudentController::class, 'store']);
         Route::get('/{id}', [StudentController::class, 'show']);

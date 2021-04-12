@@ -22,4 +22,8 @@ class School extends Model
     public function faculties(){
         return $this->belongsToMany(Faculty::class);
     }
+
+    public function students(){
+        return $this->belongsToMany(Student::class);
+    }
 }
