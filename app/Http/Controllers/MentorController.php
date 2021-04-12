@@ -29,10 +29,12 @@ class MentorController extends Controller
     {
         $data = $request->validate([
             'user_id' => 'required|integer',
+            'role_id' => 'required|integer'
         ]);
 
         $mentor = new Mentor;
         $mentor->user_id = $request->user_id;
+        $mentor->role_id = $request->role_id;
         $mentor->save();
 
         return response(['mentor' => $mentor]);
@@ -63,9 +65,15 @@ class MentorController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+        $data = $request->validate([
+            'user_id' => 'required|integer',
+            'role_id' => 'required|integer'
+        ]);
         $mentor = Mentor::find($id);
         if($mentor){
             $mentor->user_id = $request->user_id;
+            $mentor->role_id = $request->role_id;
             $mentor->save();
             return response(['mentor' => $mentor]);
         }else{

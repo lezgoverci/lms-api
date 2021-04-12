@@ -16,6 +16,7 @@ class CreateMentorsTable extends Migration
         Schema::create('mentors', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
+            $table->integer('role_id');
             $table->timestamps();
             $table->softDeletes();
         });

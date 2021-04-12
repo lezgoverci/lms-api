@@ -21,4 +21,8 @@ class Role extends Model
     public function faculties(){
         return $this->hasMany(Faculty::class);
     }
+
+    public function mentors(){
+        return $this->hasMany(Mentor::class);
+    }
 }
