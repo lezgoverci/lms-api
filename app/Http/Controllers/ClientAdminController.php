@@ -67,6 +67,13 @@ class ClientAdminController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+        $data = $request->validate([
+            'client_id' => 'required|integer',
+            'user_id' => 'required|integer',
+            'role_id' => 'required|integer',
+        ]);
+
         $clientAdmin = ClientAdmin::find($id);
         if($clientAdmin){
             $clientAdmin->client_id = $request->client_id;
