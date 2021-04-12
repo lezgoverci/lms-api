@@ -172,4 +172,43 @@ class CourseController extends Controller
 
 
     }
+
+    /**
+     * Add student to a course
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function setStudent(Request $request, $id){
+
+        $data = $request->validate([
+            'student_id' => 'required|integer',
+        ]);
+
+        $course = Course::find($id);
+
+        $course->students()->attach($request->student_id);
+
+        return response(['course' => $course]);
+    }
+
+    /**
+     * Get all students
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function getStudents($id){
+
+
+        $course = Course::find($id);
+        if($course){
+            return response(['students' => $course->students]);
+        }else{
+            return response(['message' => 'Course not found'], 404);
+        }
+
+
+    }
 }
