@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\MentoringSession;
 use App\Models\Mentorship;
 use Illuminate\Http\Request;
 
@@ -92,5 +93,45 @@ class MentorshipController extends Controller
         }else{
             return response(['message' => 'Mentorship not found'], 404);
         }
+    }
+
+    /**
+     * Associate a mentorship to a session
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function setSession(Request $request, $id){
+
+        $data = $request->validate([
+            'mentoring_session_id' => 'required|integer',
+        ]);
+
+        $mentorship = Mentorship::find($id);
+        $session = MentoringSession::find($request->mentoring_session_id);
+
+        $mentorship->sessions()->associate($session);
+
+        return response(['mentorship' => $mentorship]);
+    }
+
+    /**
+     * Get all sessions
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function getSessions($id){
+
+
+        $mentorship = Mentorship::find($id);
+        if($mentorship){
+            return response(['sessions' => $mentorship->sessions]);
+        }else{
+            return response(['message' => 'Mentorship not found'], 404);
+        }
+
+
     }
 }

@@ -18,6 +18,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\ClientAdminController;
 use App\Http\Controllers\MentorshipController;
 use App\Http\Controllers\PartnerAdminController;
+use App\Http\Controllers\MentoringSessionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -217,12 +218,33 @@ Route::middleware('auth:api')->group(function(){
     });
 
     Route::prefix("/mentorship")->group(function(){
+
+        //Sessions
+        Route::get('/{id}/session', [MentorshipController::class, 'getSessions']);
+        Route::post('/{id}/session', [MentorshipController::class, 'setSession']);
+
         Route::get('/', [MentorshipController::class, 'index']);
         Route::post('/', [MentorshipController::class, 'store']);
         Route::get('/{id}', [MentorshipController::class, 'show']);
         Route::post('/{id}', [MentorshipController::class, 'update']);
         Route::delete('/{id}', [MentorshipController::class, 'destroy']);
     });
+
+
+    Route::prefix("/mentoring-session")->group(function(){
+
+
+        //Mentorships
+        Route::get('/{id}/mentorship', [MentoringSessionController::class, 'getMentorship']);
+        Route::post('/{id}/mentorship', [MentoringSessionController::class, 'setMentorship']);
+
+        Route::get('/', [MentoringSessionController::class, 'index']);
+        Route::post('/', [MentoringSessionController::class, 'store']);
+        Route::get('/{id}', [MentoringSessionController::class, 'show']);
+        Route::post('/{id}', [MentoringSessionController::class, 'update']);
+        Route::delete('/{id}', [MentoringSessionController::class, 'destroy']);
+    });
+
     Route::prefix("/partner/admin")->group(function(){
         Route::get('/', [PartnerAdminController::class, 'index']);
         Route::post('/', [PartnerAdminController::class, 'store']);

@@ -6,11 +6,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Mentorship extends Model
+class MentoringSession extends Model
 {
-    use HasFactory,SoftDeletes;
+    use HasFactory, SoftDeletes;
 
-    public function sessions(){
-        return $this->hasMany(MentoringSession::class);
+    public function mentorship(){
+        return $this->belongsTo(Mentorship::class);
     }
 }
