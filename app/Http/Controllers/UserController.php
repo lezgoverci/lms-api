@@ -99,4 +99,44 @@ class UserController extends Controller
     }
 
 
+    /**
+     * Add event to a user
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function setEvent(Request $request, $id){
+
+        $data = $request->validate([
+            'event_id' => 'required|integer',
+        ]);
+
+        $user = User::find($id);
+
+        $user->events()->attach($request->event_id);
+
+        return response(['user' => $user]);
+    }
+
+    /**
+     * Get all events
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function getEvents($id){
+
+
+        $user = User::find($id);
+        if($user){
+            return response(['events' => $user->events]);
+        }else{
+            return response(['message' => 'User not found'], 404);
+        }
+
+
+    }
+
+
 }

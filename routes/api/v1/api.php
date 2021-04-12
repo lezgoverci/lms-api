@@ -39,6 +39,12 @@ Route::prefix("/user")->group(function(){
 Route::middleware('auth:api')->group(function(){
 
     Route::prefix("/user")->group(function(){
+
+        //Events
+        Route::get('/{id}/event', [UserController::class, 'getEvents']);
+        Route::post('/{id}/event', [UserController::class, 'setEvent']);
+
+
         Route::get('/', [UserController::class, 'index']);
         Route::post('/', [UserController::class, 'store']);
         Route::get('/{id}', [UserController::class, 'show']);
@@ -154,6 +160,14 @@ Route::middleware('auth:api')->group(function(){
     });
 
     Route::prefix("/event")->group(function(){
+
+
+        //Users
+        Route::get('/{id}/participant', [EventController::class, 'setUser']);
+        Route::post('/{id}/participant', [EventController::class, 'getUsers']);
+
+
+
         Route::get('/', [EventController::class, 'index']);
         Route::post('/', [EventController::class, 'store']);
         Route::get('/{id}', [EventController::class, 'show']);

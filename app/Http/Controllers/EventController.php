@@ -95,4 +95,44 @@ class EventController extends Controller
             return response(['message' => 'Event not found'], 404);
         }
     }
+
+
+    /**
+     * Add a user to event
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function setUser(Request $request, $id){
+
+        $data = $request->validate([
+            'user_id' => 'required|integer',
+        ]);
+
+        $event = Event::find($id);
+
+        $event->users()->attach($request->user_id);
+
+        return response(['event' => $event]);
+    }
+
+    /**
+     * Get all users
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function getUsers($id){
+
+
+        $event = Event::find($id);
+        if($event){
+            return response(['users' => $event->users]);
+        }else{
+            return response(['message' => 'Event not found'], 404);
+        }
+
+
+    }
 }
