@@ -22,6 +22,7 @@ class CreateStudentsTable extends Migration
             $table->string('year');
             $table->string('password');
             $table->string('remarks');
+            $table->integer('role_id');
             $table->timestamps();
             $table->softDeletes();
         });

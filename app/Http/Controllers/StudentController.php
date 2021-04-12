@@ -37,6 +37,7 @@ class StudentController extends Controller
             'year' => 'required|string',
             'password' => 'required|string',
             'remarks' => 'required|string',
+            'role_id' => 'required|integer'
         ]);
 
         $student = new Student;
@@ -47,6 +48,7 @@ class StudentController extends Controller
         $student->year = $request->year;
         $student->password = Hash::make($request->password);
         $student->remarks = $request->remarks;
+        $student->role_id = $request->role_id;
         $student->save();
 
         return response(['student' => $student]);
@@ -77,6 +79,18 @@ class StudentController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+        $data = $request->validate([
+            'firstName' => 'required|string',
+            'lastName' => 'required|string',
+            'email' => 'required|string',
+            'course' => 'required|string',
+            'year' => 'required|string',
+            'password' => 'required|string',
+            'remarks' => 'required|string',
+            'role_id' => 'required|integer'
+        ]);
+
         $student = Student::find($id);
         if($student){
             $student->firstName = $request->firstName;
@@ -86,6 +100,7 @@ class StudentController extends Controller
             $student->year = $request->year;
             $student->password = Hash::make($request->password);
             $student->remarks = $request->remarks;
+            $student->role_id = $request->role_id;
             $student->save();
             return response(['student' => $student]);
         }else{

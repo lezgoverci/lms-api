@@ -50,8 +50,8 @@ class User extends Authenticatable
         return $this->belongsToMany(Event::class);
     }
 
-    public function roles(){
-        return $this->belongsToMany(Role::class);
+    public function role(){
+        return $this->belongsTo(Role::class);
     }
 
 }

@@ -29,10 +29,12 @@ class RoleController extends Controller
     {
         $data = $request->validate([
             'type' => 'required|string',
+            'user_id' => 'required|integer'
         ]);
 
         $role = new Role;
         $role->type = $request->type;
+        $role->user_id = $request->user_id;
         $role->save();
 
         return response(['role' => $role]);
@@ -63,9 +65,16 @@ class RoleController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+        $data = $request->validate([
+            'type' => 'required|string',
+            'user_id' => 'required|integer'
+        ]);
+
         $role = Role::find($id);
         if($role){
             $role->type = $request->type;
+            $role->user_id = $request->user_id;
             $role->save();
             return response(['role' => $role]);
         }else{
