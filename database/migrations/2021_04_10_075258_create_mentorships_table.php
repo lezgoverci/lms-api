@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePartnerAdminsTable extends Migration
+class CreateMentorshipsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreatePartnerAdminsTable extends Migration
      */
     public function up()
     {
-        Schema::create('partner_admins', function (Blueprint $table) {
+        Schema::create('mentorships', function (Blueprint $table) {
             $table->id();
-            $table->integer('partner_id');
-            $table->integer('user_id');
+            $table->integer('student_id');
+            $table->integer('mentor_id');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -29,6 +29,6 @@ class CreatePartnerAdminsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('partner_admins');
+        Schema::dropIfExists('mentorships');
     }
 }
