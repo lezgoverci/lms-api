@@ -29,12 +29,14 @@ class PartnerAdminController extends Controller
     {
         $data = $request->validate([
             'email' => 'required|string',
-            'password' => 'required|string'
+            'password' => 'required|string',
+            'role_id' => 'required|integer'
         ]);
 
         $partnerAdmin = new PartnerAdmin;
         $partnerAdmin->partner_id = $request->partner_id;
         $partnerAdmin->user_id = $request->user_id;
+        $partnerAdmin->role_id = $request->role_id;
         $partnerAdmin->save();
 
         return response(['partnerAdmin' => $partnerAdmin]);
@@ -65,10 +67,18 @@ class PartnerAdminController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+        $data = $request->validate([
+            'email' => 'required|string',
+            'password' => 'required|string',
+            'role_id' => 'required|integer'
+        ]);
+
         $partnerAdmin = PartnerAdmin::find($id);
         if($partnerAdmin){
             $partnerAdmin->partner_id = $request->partner_id;
             $partnerAdmin->user_id = $request->user_id;
+            $partnerAdmin->role_id = $request->role_id;
             $partnerAdmin->save();
             return response(['partnerAdmin' => $partnerAdmin]);
         }else{

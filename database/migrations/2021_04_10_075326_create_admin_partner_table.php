@@ -17,6 +17,7 @@ class CreateAdminPartnerTable extends Migration
             $table->id();
             $table->integer('partner_id');
             $table->integer('user_id');
+            $table->integer('role_id');
             $table->timestamps();
             $table->softDeletes();
         });
