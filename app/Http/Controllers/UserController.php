@@ -139,4 +139,44 @@ class UserController extends Controller
     }
 
 
+    /**
+     * Add a role to a user
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function setRole(Request $request, $id){
+
+        $data = $request->validate([
+            'role_id' => 'required|integer',
+        ]);
+
+        $user = User::find($id);
+
+        $user->roles()->attach($request->role_id);
+
+        return response(['user' => $user]);
+    }
+
+    /**
+     * Get all roles
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function getRoles($id){
+
+
+        $user = User::find($id);
+        if($user){
+            return response(['roles' => $user->roles]);
+        }else{
+            return response(['message' => 'User not found'], 404);
+        }
+
+
+    }
+
+
 }

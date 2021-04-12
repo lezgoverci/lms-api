@@ -40,6 +40,10 @@ Route::middleware('auth:api')->group(function(){
 
     Route::prefix("/user")->group(function(){
 
+        //Roles
+        Route::get('/{id}/role', [UserController::class, 'getRoles']);
+        Route::post('/{id}/role', [UserController::class, 'setRole']);
+
         //Events
         Route::get('/{id}/event', [UserController::class, 'getEvents']);
         Route::post('/{id}/event', [UserController::class, 'setEvent']);
@@ -192,6 +196,11 @@ Route::middleware('auth:api')->group(function(){
     });
 
     Route::prefix("/role")->group(function(){
+
+        //Users
+        Route::get('/{id}/user', [RoleController::class, 'getUsers']);
+        Route::post('/{id}/user', [RoleController::class, 'setUser']);
+
         Route::get('/', [RoleController::class, 'index']);
         Route::post('/', [RoleController::class, 'store']);
         Route::get('/{id}', [RoleController::class, 'show']);

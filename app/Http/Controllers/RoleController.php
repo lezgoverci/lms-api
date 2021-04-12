@@ -90,4 +90,44 @@ class RoleController extends Controller
             return response(['message' => 'Role not found'], 404);
         }
     }
+
+
+    /**
+     * Add user to a role
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function setUser(Request $request, $id){
+
+        $data = $request->validate([
+            'user_id' => 'required|integer',
+        ]);
+
+        $role = Role::find($id);
+
+        $role->users()->attach($request->user_id);
+
+        return response(['role' => $role]);
+    }
+
+    /**
+     * Get all users
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function getUsers($id){
+
+
+        $role = Role::find($id);
+        if($role){
+            return response(['users' => $role->users]);
+        }else{
+            return response(['message' => 'Role not found'], 404);
+        }
+
+
+    }
 }
