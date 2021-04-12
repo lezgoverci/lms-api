@@ -18,4 +18,8 @@ class Faculty extends Model
     public function schools(){
         return $this->belongsToMany(School::class);
     }
+
+    public function role(){
+        return $this->belongsTo(Role::class);
+    }
 }

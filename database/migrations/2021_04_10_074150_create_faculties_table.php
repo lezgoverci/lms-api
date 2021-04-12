@@ -17,6 +17,7 @@ class CreateFacultiesTable extends Migration
             $table->id();
             $table->integer('course_id');
             $table->integer('user_id');
+            $table->integer('role_id');
             $table->timestamps();
             $table->softDeletes();
         });

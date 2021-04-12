@@ -29,12 +29,14 @@ class FacultyController extends Controller
     {
         $data = $request->validate([
             'user_id' => 'required|integer',
+            'role_id' => 'required|integer'
 
         ]);
 
         $faculty = new Faculty;
         $faculty->user_id = $request->user_id;
         $faculty->course_id = $request->course_id;
+        $faculty->role_id = $request->role_id;
         $faculty->save();
 
         return response(['faculty' => $faculty]);
@@ -65,10 +67,18 @@ class FacultyController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+        $data = $request->validate([
+            'user_id' => 'required|integer',
+            'role_id' => 'required|integer'
+
+        ]);
+
         $faculty = Faculty::find($id);
         if($faculty){
             $faculty->user_id = $request->user_id;
             $faculty->course_id = $request->course_id;
+            $faculty->role_id = $request->role_id;
             $faculty->save();
             return response(['faculty' => $faculty]);
         }else{
