@@ -14,4 +14,8 @@ class School extends Model
     public function client(){
         return $this->belongsTo(Client::class);
     }
+
+    public function courses(){
+        return $this->belongsToMany(Course::class);
+    }
 }

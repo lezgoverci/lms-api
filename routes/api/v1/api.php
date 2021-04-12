@@ -72,6 +72,12 @@ Route::middleware('auth:api')->group(function(){
     });
 
     Route::prefix("/school")->group(function(){
+
+
+        //Courses
+        Route::get('/{id}/getCourses', [SchoolController::class, 'getCourses']);
+        Route::post('/{id}/setCourse', [SchoolController::class, 'setCourse']);
+
         Route::get('/', [SchoolController::class, 'index']);
         Route::post('/', [SchoolController::class, 'store']);
         Route::get('/{id}', [SchoolController::class, 'show']);
@@ -103,6 +109,11 @@ Route::middleware('auth:api')->group(function(){
     });
 
     Route::prefix("/course")->group(function(){
+
+
+        //Schools
+        Route::get('/{id}/getSchools', [CourseController::class, 'getSchools']);
+        Route::post('/{id}/setSchool', [CourseController::class, 'setSchool']);
 
         //Faculties
         Route::get('/{id}/getFaculties', [CourseController::class, 'getFaculties']);

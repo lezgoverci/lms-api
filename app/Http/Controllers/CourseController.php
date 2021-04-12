@@ -121,12 +121,51 @@ class CourseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function getCourses($id){
+    public function getFaculties($id){
 
 
         $course = Course::find($id);
         if($course){
             return response(['faculties' => $course->faculties]);
+        }else{
+            return response(['message' => 'Course not found'], 404);
+        }
+
+
+    }
+
+    /**
+     * Add a school to a course
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function setSchool(Request $request, $id){
+
+        $data = $request->validate([
+            'school_id' => 'required|integer',
+        ]);
+
+        $course = Course::find($id);
+
+        $course->schools()->attach($request->school_id);
+
+        return response(['course' => $course]);
+    }
+
+    /**
+     * Get all schools
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function getSchools($id){
+
+
+        $course = Course::find($id);
+        if($course){
+            return response(['schools' => $course->schools]);
         }else{
             return response(['message' => 'Course not found'], 404);
         }
