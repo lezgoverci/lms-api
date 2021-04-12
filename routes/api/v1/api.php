@@ -95,7 +95,7 @@ Route::middleware('auth:api')->group(function(){
     Route::prefix("/student")->group(function(){
 
         // Schools
-        Route::get('/{id}/school', [StudentController::class, 'getSchools']);
+        Route::get('/{id}/school', [StudentController::class, 'getSchool']);
         Route::post('/{id}/school', [StudentController::class, 'setSchool']);
 
 

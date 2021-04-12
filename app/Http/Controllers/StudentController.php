@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Student;
+use App\Models\School;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -111,7 +112,7 @@ class StudentController extends Controller
     }
 
     /**
-     * Add a school to a student
+     * Associate a school to a student
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -123,25 +124,31 @@ class StudentController extends Controller
             'school_id' => 'required|integer',
         ]);
 
+
+
+        $school = School::find($request->school_id);
         $student = Student::find($id);
 
-        $student->schools()->attach($request->school_id);
+        $student->school()->associate($school);
+
 
         return response(['student' => $student]);
+
+
     }
 
     /**
-     * Get all schools
+     * Get school
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function getSchools($id){
+    public function getSchool($id){
 
 
         $student = Student::find($id);
         if($student){
-            return response(['schools' => $student->schools]);
+            return response(['schools' => $student->school]);
         }else{
             return response(['message' => 'Student not found'], 404);
         }
