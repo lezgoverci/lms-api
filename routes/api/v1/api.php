@@ -67,6 +67,16 @@ Route::middleware('auth:api')->group(function(){
     });
 
     Route::prefix("/partner")->group(function(){
+
+
+
+        Route::get('/admin', [PartnerAdminController::class, 'index']);
+        Route::post('/admin', [PartnerAdminController::class, 'store']);
+        Route::get('/admin/{id}', [PartnerAdminController::class, 'show']);
+        Route::post('/admin/{id}', [PartnerAdminController::class, 'update']);
+        Route::delete('/admin/{id}', [PartnerAdminController::class, 'destroy']);
+
+
         Route::get('/', [PartnerController::class, 'index']);
         Route::post('/', [PartnerController::class, 'store']);
         Route::get('/{id}', [PartnerController::class, 'show']);
@@ -199,8 +209,8 @@ Route::middleware('auth:api')->group(function(){
     Route::prefix("/role")->group(function(){
 
         //Users
-        Route::get('/{id}/user', [RoleController::class, 'getUsers']);
-        Route::post('/{id}/user', [RoleController::class, 'setUser']);
+        // Route::get('/{id}/user', [RoleController::class, 'getUsers']);
+        // Route::post('/{id}/user', [RoleController::class, 'setUser']);
 
         Route::get('/', [RoleController::class, 'index']);
         Route::post('/', [RoleController::class, 'store']);
@@ -245,11 +255,5 @@ Route::middleware('auth:api')->group(function(){
         Route::delete('/{id}', [MentoringSessionController::class, 'destroy']);
     });
 
-    Route::prefix("/partner/admin")->group(function(){
-        Route::get('/', [PartnerAdminController::class, 'index']);
-        Route::post('/', [PartnerAdminController::class, 'store']);
-        Route::get('/{id}', [PartnerAdminController::class, 'show']);
-        Route::post('/{id}', [PartnerAdminController::class, 'update']);
-        Route::delete('/{id}', [PartnerAdminController::class, 'destroy']);
-    });
+
 });

@@ -28,13 +28,11 @@ class RoleController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'type' => 'required|string',
-            'user_id' => 'required|integer'
+            'name' => 'required|string',
         ]);
 
         $role = new Role;
-        $role->type = $request->type;
-        $role->user_id = $request->user_id;
+        $role->name = $request->name;
         $role->save();
 
         return response(['role' => $role]);
@@ -67,14 +65,12 @@ class RoleController extends Controller
     {
 
         $data = $request->validate([
-            'type' => 'required|string',
-            'user_id' => 'required|integer'
+            'name' => 'required|string',
         ]);
 
         $role = Role::find($id);
         if($role){
-            $role->type = $request->type;
-            $role->user_id = $request->user_id;
+            $role->name = $request->name;
             $role->save();
             return response(['role' => $role]);
         }else{
@@ -101,42 +97,42 @@ class RoleController extends Controller
     }
 
 
-    /**
-     * Add user to a role
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function setUser(Request $request, $id){
+    // /**
+    //  * Add user to a role
+    //  *
+    //  * @param  \Illuminate\Http\Request  $request
+    //  * @param  int  $id
+    //  * @return \Illuminate\Http\Response
+    //  */
+    // public function setUser(Request $request, $id){
 
-        $data = $request->validate([
-            'user_id' => 'required|integer',
-        ]);
+    //     $data = $request->validate([
+    //         'user_id' => 'required|integer',
+    //     ]);
 
-        $role = Role::find($id);
+    //     $role = Role::find($id);
 
-        $role->users()->attach($request->user_id);
+    //     $role->users()->attach($request->user_id);
 
-        return response(['role' => $role]);
-    }
+    //     return response(['role' => $role]);
+    // }
 
-    /**
-     * Get all users
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function getUsers($id){
-
-
-        $role = Role::find($id);
-        if($role){
-            return response(['users' => $role->users]);
-        }else{
-            return response(['message' => 'Role not found'], 404);
-        }
+    // /**
+    //  * Get all users
+    //  *
+    //  * @param  int  $id
+    //  * @return \Illuminate\Http\Response
+    //  */
+    // public function getUsers($id){
 
 
-    }
+    //     $role = Role::find($id);
+    //     if($role){
+    //         return response(['users' => $role->users]);
+    //     }else{
+    //         return response(['message' => 'Role not found'], 404);
+    //     }
+
+
+    // }
 }

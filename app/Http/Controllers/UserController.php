@@ -30,17 +30,29 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
+            'firstName' => 'required|string',
+            'lastName' => 'required|string',
             'email' => 'required|string',
             'password' => 'required|string'
         ]);
 
-        $user = new User;
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->password = Hash::make($request->password);
-        $user->save();
 
-        return response(['user' => $user]);
+        $tempUser = User::where('email','=', $request->email)->first();
+
+        if($tempUser){
+            return response(['message' => 'Account already exists'], 422);
+        }else{
+            $user = new User;
+            $user->firstName = $request->firstName;
+            $user->lastName = $request->lastName;
+            $user->email = $request->email;
+            $user->password = Hash::make($request->password);
+            $user->save();
+
+            return response(['user' => $user]);
+        }
+
+
     }
 
     /**
@@ -70,7 +82,8 @@ class UserController extends Controller
     {
         $user = User::find($id);
         if($user){
-            $user->name = $request->name;
+            $user->firstName = $request->firstName;
+            $user->lastName = $request->lastName;
             $user->email = $request->email;
             $user->school_id = $request->school_id;
             $user->save();

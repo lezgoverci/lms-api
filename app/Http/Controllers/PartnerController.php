@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Partner;
 use Illuminate\Http\Request;
 
+use Illuminate\Http\File;
+use Illuminate\Support\Facades\Storage;
+
 class PartnerController extends Controller
 {
     /**
@@ -14,7 +17,7 @@ class PartnerController extends Controller
      */
     public function index()
     {
-        $partners = Partner::all();
+        $partners = Partner::orderBy('created_at', 'desc')->get();
 
         return response(['partners' => $partners]);
     }
@@ -31,9 +34,15 @@ class PartnerController extends Controller
             'name' => 'required|string'
         ]);
 
+        $file =  $request->file('logo');
+        $path = Storage::putFile('public/files', $file);
+        $url = Storage::url($path);
+
+
         $partner = new Partner;
         $partner->status = 'active';
         $partner->name = $request->name;
+        $partner->logo = $url;
         $partner->save();
 
         return response(['partner' => $partner]);

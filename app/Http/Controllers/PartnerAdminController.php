@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\PartnerAdmin;
+use App\Models\AdminPartner;
 use Illuminate\Http\Request;
 
 class PartnerAdminController extends Controller
@@ -14,7 +14,7 @@ class PartnerAdminController extends Controller
      */
     public function index()
     {
-        $partnerAdmins = PartnerAdmin::all();
+        $partnerAdmins = AdminPartner::all();
 
         return response(['partnerAdmins' => $partnerAdmins]);
     }
@@ -28,12 +28,12 @@ class PartnerAdminController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'email' => 'required|string',
-            'password' => 'required|string',
+            'partner_id' => 'required|integer',
+            'user_id' => 'required|integer',
             'role_id' => 'required|integer'
         ]);
 
-        $partnerAdmin = new PartnerAdmin;
+        $partnerAdmin = new AdminPartner;
         $partnerAdmin->partner_id = $request->partner_id;
         $partnerAdmin->user_id = $request->user_id;
         $partnerAdmin->role_id = $request->role_id;
@@ -50,11 +50,11 @@ class PartnerAdminController extends Controller
      */
     public function show($id)
     {
-        $partnerAdmin = PartnerAdmin::find($id);
+        $partnerAdmin = AdminPartner::find($id);
         if($partnerAdmin){
             return response(['partnerAdmin' => $partnerAdmin]);
         }else{
-            return response(['message' => 'PartnerAdmin not found'], 404);
+            return response(['message' => 'AdminPartner not found'], 404);
         }
     }
 
@@ -69,12 +69,12 @@ class PartnerAdminController extends Controller
     {
 
         $data = $request->validate([
-            'email' => 'required|string',
-            'password' => 'required|string',
+            'partner_id' => 'required|integer',
+            'user_id' => 'required|integer',
             'role_id' => 'required|integer'
         ]);
 
-        $partnerAdmin = PartnerAdmin::find($id);
+        $partnerAdmin = AdminPartner::find($id);
         if($partnerAdmin){
             $partnerAdmin->partner_id = $request->partner_id;
             $partnerAdmin->user_id = $request->user_id;
@@ -82,7 +82,7 @@ class PartnerAdminController extends Controller
             $partnerAdmin->save();
             return response(['partnerAdmin' => $partnerAdmin]);
         }else{
-            return response(['message' => 'PartnerAdmin not found'], 404);
+            return response(['message' => 'AdminPartner not found'], 404);
         }
     }
 
@@ -94,13 +94,13 @@ class PartnerAdminController extends Controller
      */
     public function destroy($id)
     {
-        $partnerAdmin = PartnerAdmin::find($id);
+        $partnerAdmin = AdminPartner::find($id);
 
         if($partnerAdmin){
             $partnerAdmin->delete();
             return response(['partnerAdmin' => $partnerAdmin]);
         }else{
-            return response(['message' => 'PartnerAdmin not found'], 404);
+            return response(['message' => 'AdminPartner not found'], 404);
         }
     }
 }
