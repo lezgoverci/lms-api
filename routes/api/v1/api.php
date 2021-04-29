@@ -19,6 +19,10 @@ use App\Http\Controllers\ClientAdminController;
 use App\Http\Controllers\MentorshipController;
 use App\Http\Controllers\PartnerAdminController;
 use App\Http\Controllers\MentoringSessionController;
+use App\Http\Controllers\ModuleController;
+use App\Http\Controllers\MaterialController;
+use App\Http\Controllers\FileController;
+use App\Http\Controllers\TaskController;
 
 /*
 |--------------------------------------------------------------------------
@@ -123,6 +127,10 @@ Route::middleware('auth:api')->group(function(){
         // Schools
         Route::get('/{id}/school', [StudentController::class, 'getSchool']);
         Route::post('/{id}/school', [StudentController::class, 'setSchool']);
+
+        // Tasks
+        Route::get('/{id}/task', [StudentController::class, 'getTasks']);
+        Route::post('/{id}/task', [StudentController::class, 'setTask']);
 
 
         Route::get('/', [StudentController::class, 'index']);
@@ -253,6 +261,42 @@ Route::middleware('auth:api')->group(function(){
         Route::get('/{id}', [MentoringSessionController::class, 'show']);
         Route::post('/{id}', [MentoringSessionController::class, 'update']);
         Route::delete('/{id}', [MentoringSessionController::class, 'destroy']);
+    });
+
+    Route::prefix("/module")->group(function(){
+
+        Route::get('/', [ModuleController::class, 'index']);
+        Route::post('/', [ModuleController::class, 'store']);
+        Route::get('/{id}', [ModuleController::class, 'show']);
+        Route::post('/{id}', [ModuleController::class, 'update']);
+        Route::delete('/{id}', [ModuleController::class, 'destroy']);
+    });
+
+    Route::prefix("/task")->group(function(){
+
+        Route::get('/', [TaskController::class, 'index']);
+        Route::post('/', [TaskController::class, 'store']);
+        Route::get('/{id}', [TaskController::class, 'show']);
+        Route::post('/{id}', [TaskController::class, 'update']);
+        Route::delete('/{id}', [TaskController::class, 'destroy']);
+    });
+
+    Route::prefix("/material")->group(function(){
+
+        Route::get('/', [MaterialController::class, 'index']);
+        Route::post('/', [MaterialController::class, 'store']);
+        Route::get('/{id}', [MaterialController::class, 'show']);
+        Route::post('/{id}', [MaterialController::class, 'update']);
+        Route::delete('/{id}', [MaterialController::class, 'destroy']);
+    });
+
+    Route::prefix("/file")->group(function(){
+
+        Route::get('/', [FileController::class, 'index']);
+        Route::post('/', [FileController::class, 'store']);
+        Route::get('/{id}', [FileController::class, 'show']);
+        Route::post('/{id}', [FileController::class, 'update']);
+        Route::delete('/{id}', [FileController::class, 'destroy']);
     });
 
 

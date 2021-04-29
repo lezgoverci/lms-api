@@ -209,4 +209,42 @@ class StudentController extends Controller
 
 
     }
+     /**
+     * Add task to a student
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function setTask(Request $request, $id){
+
+        $data = $request->validate([
+            'task_id' => 'required|integer',
+        ]);
+
+        $student = Student::find($id);
+
+        $student->task()->attach($request->task_id);
+
+        return response(['student' => $student]);
+    }
+
+    /**
+     * Get all tasks
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function getTasks($id){
+
+
+        $student = Student::find($id);
+        if($student){
+            return response(['tasks' => $student->tasks]);
+        }else{
+            return response(['message' => 'Student not found'], 404);
+        }
+
+
+    }
 }
