@@ -21,4 +21,12 @@ class Student extends Model
     public function role(){
         return $this->belongsTo(Role::class);
     }
+
+    public function tasks(){
+        return $this->belongsToMany(Task::class);
+    }
+
+    public function files(){
+        return $this->hasManyThrough(File::class, Task::class);
+    }
 }

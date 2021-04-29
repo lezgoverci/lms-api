@@ -15,9 +15,14 @@ class CreateFacultiesTable extends Migration
     {
         Schema::create('faculties', function (Blueprint $table) {
             $table->id();
-            $table->integer('course_id');
+            $table->integer('course_id')->nullable();
             $table->integer('user_id');
-            $table->integer('role_id');
+            $table->integer('role_id')->nullable();
+            $table->string('linkedin')->nullable();
+            $table->string('company')->nullable();
+            $table->string('position')->nullable();
+            $table->string('tagline')->nullable();
+            $table->string('field')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

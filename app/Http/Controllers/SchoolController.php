@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\School;
 use App\Models\Student;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class SchoolController extends Controller
 {
@@ -32,9 +33,14 @@ class SchoolController extends Controller
             'name' => 'required|string',
         ]);
 
+        $file =  $request->file('logo');
+        $path = Storage::putFile('public/files', $file);
+        $url = Storage::url($path);
+
         $school = new School;
         $school->name = $request->name;
         $school->client_id = $request->client_id;
+        $school->logo = $url;
         $school->save();
 
         return response(['school' => $school]);

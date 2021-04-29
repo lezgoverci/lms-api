@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Client;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ClientController extends Controller
 {
@@ -14,7 +15,7 @@ class ClientController extends Controller
      */
     public function index()
     {
-        $clients = Client::all();
+        $clients = Client::orderBy('created_at', 'desc')->get();
 
         return response(['clients' => $clients]);
     }
@@ -31,8 +32,13 @@ class ClientController extends Controller
             'name' => 'required|string',
         ]);
 
+        $file =  $request->file('logo');
+        $path = Storage::putFile('public/files', $file);
+        $url = Storage::url($path);
+
         $client = new Client;
         $client->name = $request->name;
+        $client->logo = $url;
         $client->save();
 
         return response(['client' => $client]);
