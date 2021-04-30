@@ -36,6 +36,8 @@ use App\Http\Controllers\TaskController;
 */
 
 
+Route::post('/setup-student-profile', [StudentController::class, 'store']);
+
 Route::prefix("/user")->group(function(){
     Route::post('/login',[LoginController::class, 'login']);
     Route::post('/register', [UserController::class, 'store']);

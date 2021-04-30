@@ -24,7 +24,8 @@ class DatabaseSeeder extends Seeder
             FacultySeeder::class,
             ModuleSeeder::class,
             TaskSeeder::class,
-            FileSeeder::class
+            FileSeeder::class,
+            CourseFacultySeeder::class
         ]);
     }
 }

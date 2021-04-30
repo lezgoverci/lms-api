@@ -10,7 +10,13 @@ class Module extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $with = ['tasks'];
+
     public function course(){
         return $this->belongsTo(Course::class);
+    }
+
+    public function tasks(){
+        return $this->hasMany(Task::class);
     }
 }

@@ -30,25 +30,21 @@ class StudentController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'firstName' => 'required|string',
-            'lastName' => 'required|string',
-            'email' => 'required|string',
-            'course' => 'required|string',
-            'year' => 'required|string',
-            'password' => 'required|string',
-            'remarks' => 'required|string',
-            'role_id' => 'required|integer'
+            'user_id' => 'required|integer',
+
         ]);
 
         $student = new Student;
-        $student->firstName = $request->firstName;
-        $student->lastName = $request->lastName;
-        $student->email = $request->email;
+        $student->user_id = $request->user_id;
         $student->course = $request->course;
         $student->year = $request->year;
-        $student->password = Hash::make($request->password);
         $student->remarks = $request->remarks;
         $student->role_id = $request->role_id;
+        $student->companyName = $request->companyName;
+        $student->department = $request->department;
+        $student->linkedin = $request->linkedin;
+        $student->mobileNumber = $request->mobileNumber;
+        $student->position = $request->position;
         $student->save();
 
         return response(['student' => $student]);
@@ -81,26 +77,22 @@ class StudentController extends Controller
     {
 
         $data = $request->validate([
-            'firstName' => 'required|string',
-            'lastName' => 'required|string',
-            'email' => 'required|string',
-            'course' => 'required|string',
-            'year' => 'required|string',
-            'password' => 'required|string',
-            'remarks' => 'required|string',
-            'role_id' => 'required|integer'
+            'user_id' => 'required|string',
+
         ]);
 
         $student = Student::find($id);
         if($student){
-            $student->firstName = $request->firstName;
-            $student->lastName = $request->lastName;
-            $student->email = $request->email;
+            $student->user_id = $request->user_id;
             $student->course = $request->course;
             $student->year = $request->year;
-            $student->password = Hash::make($request->password);
             $student->remarks = $request->remarks;
             $student->role_id = $request->role_id;
+            $student->companyName = $request->companyName;
+            $student->department = $request->department;
+            $student->linkedin = $request->linkedin;
+            $student->mobileNumber = $request->mobileNumber;
+            $student->position = $request->position;
             $student->save();
             return response(['student' => $student]);
         }else{

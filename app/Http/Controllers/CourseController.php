@@ -15,7 +15,7 @@ class CourseController extends Controller
      */
     public function index()
     {
-        $courses = Course::all();
+        $courses = Course::with(['modules'])->get();
 
         return response(['courses' => $courses]);
     }
@@ -49,7 +49,7 @@ class CourseController extends Controller
      */
     public function show($id)
     {
-        $course = Course::find($id);
+        $course = Course::where('id', '=', $id)->with('modules')->first();
         if($course){
             return response(['course' => $course]);
         }else{

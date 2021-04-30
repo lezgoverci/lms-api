@@ -11,6 +11,8 @@ class Faculty extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $with = ['user'];
+
     public function courses(){
         return $this->belongsToMany(Course::class);
     }
@@ -21,5 +23,9 @@ class Faculty extends Model
 
     public function role(){
         return $this->belongsTo(Role::class);
+    }
+
+    public function user(){
+        return $this->belongsTo(User::class);
     }
 }
