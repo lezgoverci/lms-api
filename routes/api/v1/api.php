@@ -55,6 +55,8 @@ Route::middleware('auth:api')->group(function(){
         Route::get('/{id}/event', [UserController::class, 'getEvents']);
         Route::post('/{id}/event', [UserController::class, 'setEvent']);
 
+        //Student
+        Route::get('/{id}/student', [UserController::class, 'getStudent']);
 
         Route::get('/', [UserController::class, 'index']);
         Route::post('/', [UserController::class, 'store']);
@@ -275,6 +277,9 @@ Route::middleware('auth:api')->group(function(){
     });
 
     Route::prefix("/task")->group(function(){
+
+        Route::post('/{task_id}/upload-file', [TaskController::class, 'uploadFile']);
+        Route::get('/{task_id}/get-files/{student_id}', [TaskController::class, 'getFiles']);
 
         Route::get('/', [TaskController::class, 'index']);
         Route::post('/', [TaskController::class, 'store']);

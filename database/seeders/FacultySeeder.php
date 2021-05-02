@@ -54,6 +54,19 @@ class FacultySeeder extends Seeder
             [
                 'user_id' => 4,
 
+                'linkedin' => 'https://www.linkedin.com/in/henryaguda/',
+                'company' => 'UBx',
+                'position' => 'Chairman of the Board',
+                'tagline' => '2010 ASEAN CIO In Government & 2020 Top 10 Transformational Leaders in Southeast Asia',
+                'field' => 'Advanced Management Program, Harvard Business School',
+                'photo' => '/storage/files/aguda.png'
+            ]
+        );
+
+        DB::table('faculties')->insert(
+            [
+                'user_id' => 5,
+
                 'linkedin' => 'https://www.linkedin.com/in/robynewilson/',
                 'company' => 'Praxis Management',
                 'position' => 'Founder & CEO',
@@ -63,18 +76,7 @@ class FacultySeeder extends Seeder
             ]
         );
 
-        DB::table('faculties')->insert(
-            [
-                'user_id' => 5,
 
-                'linkedin' => 'https://www.linkedin.com/in/henryaguda/',
-                'company' => 'UBx',
-                'position' => 'Chairman of the Board',
-                'tagline' => '2010 ASEAN CIO In Government & 2020 Top 10 Transformational Leaders in Southeast Asia',
-                'field' => 'Advanced Management Program, Harvard Business School',
-                'photo' => '/storage/files/aguda.png'
-            ]
-        );
 
         DB::table('faculties')->insert(
             [

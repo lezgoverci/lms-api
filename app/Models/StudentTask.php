@@ -6,11 +6,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class File extends Model
+class StudentTask extends Model
 {
     use HasFactory, SoftDeletes;
 
-    public function task(){
-        return $this->belongsTo(File::class);
-    }
+    protected $table = 'student_task';
 }

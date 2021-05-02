@@ -41,20 +41,21 @@ class UserSeeder extends Seeder
         );
         DB::table('users')->insert(
             [
-                'firstName' => 'Robyn',
-                'lastName' => 'Wilson',
-                'email' => 'robyn@praxismanagementconsulting.com',
-                'password' => Hash::make('password')
-            ]
-        );
-        DB::table('users')->insert(
-            [
                 'firstName' => 'Henry',
                 'lastName' => 'Aguda',
                 'email' => 'hrraguda@unionbankph.com',
                 'password' => Hash::make('password')
             ]
         );
+        DB::table('users')->insert(
+            [
+                'firstName' => 'Robyn',
+                'lastName' => 'Wilson',
+                'email' => 'robyn@praxismanagementconsulting.com',
+                'password' => Hash::make('password')
+            ]
+        );
+
         DB::table('users')->insert(
             [
                 'firstName' => 'Dave',

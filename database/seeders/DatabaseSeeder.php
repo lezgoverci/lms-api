@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Course;
 use App\Models\Faculty;
+use App\Models\Material;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -25,7 +26,8 @@ class DatabaseSeeder extends Seeder
             ModuleSeeder::class,
             TaskSeeder::class,
             FileSeeder::class,
-            CourseFacultySeeder::class
+            CourseFacultySeeder::class,
+            MaterialSeeder::class
         ]);
     }
 }

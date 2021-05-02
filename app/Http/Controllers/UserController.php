@@ -191,5 +191,30 @@ class UserController extends Controller
 
     }
 
+    /**
+     * Get student
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function getStudent($id){
+
+
+        $user = User::find($id);
+        if($user){
+            $student = $user->student;
+            if($student){
+                return response(['student' => $student]);
+            }else{
+                return response(['message' => 'Student not found'], 404);
+            }
+
+        }else{
+            return response(['message' => 'User not found'], 404);
+        }
+
+
+    }
+
 
 }

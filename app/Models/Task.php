@@ -10,6 +10,8 @@ class Task extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $with = ['materials'];
+
     public function module(){
         return $this->belongsTo(Module::class);
     }
@@ -18,5 +20,12 @@ class Task extends Model
         return $this->belongsToMany(Student::class);
     }
 
+    public function materials(){
+        return $this->hasMany(Material::class);
+    }
+
+    public function files(){
+        return $this->hasMany(File::class);
+    }
 
 }

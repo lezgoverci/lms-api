@@ -17,7 +17,7 @@ class CreateStudentTaskTable extends Migration
             $table->id();
             $table->integer('student_id');
             $table->integer('task_id');
-            $table->string('status');
+            $table->string('status')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

@@ -1,8 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
+use App\Models\File;
+use App\Models\Task;
+use App\Models\Student;
+use App\Models\StudentTask;
 
 class TaskController extends Controller
 {
@@ -35,7 +39,12 @@ class TaskController extends Controller
      */
     public function show($id)
     {
-        //
+        $task = Task::find($id)->with('files')->first();
+        if($task){
+            return response(['task' => $task]);
+        }else{
+            return response(['message' => 'Task not found'], 404);
+        }
     }
 
     /**
@@ -59,5 +68,86 @@ class TaskController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * Upload file to a task
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function uploadFile(Request $request)
+    {
+        $file =  $request->file('file');
+        $path = Storage::putFile('public/files', $file);
+        $url = Storage::url($path);
+
+
+        $student_task = StudentTask::where('student_id', '=', $request->student_id)->where('task_id','=', $request->task_id)->first();
+
+        if($student_task){
+            $file = new File;
+            $file->path = $url;
+            $file->student_task_id = $student_task->id;
+            $file->save();
+            return response(['file' => $file,'message'=>'has student task']);
+        }else{
+            $student = Student::find($request->student_id);
+            $student->tasks()->attach($request->task_id);
+            $student->save();
+
+            $temp_student_task = StudentTask::where('student_id', '=', $request->student_id)->where('task_id','=', $request->task_id)->first();
+            if($temp_student_task ){
+                $file = new File;
+                $file->path = $url;
+                $file->student_task_id = $temp_student_task->id;
+                $file->save();
+                return response(['file' => $file, "message" => 'from no student task']);
+            }else{
+                return response(['message' => 'cannot process'], 402);
+            }
+
+        }
+
+
+
+    }
+
+    /**
+     * @param  int  $task_id
+     * @param  int  $student_id
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function getFiles($task_id, $student_id)
+    {
+
+        // $data = $request->validate([
+        //     'student_id' => 'required|integer',
+        //     'task_id' => 'required|integer',
+        // ]);
+
+        // $student = Student::find($student_id);
+        // $task = Task::find($task_id);
+
+        $student_task = StudentTask::where('student_id', '=', $student_id)->where('task_id','=', $task_id)->first();
+
+
+        if( $student_task){
+            $files = File::where('student_task_id', '=', $student_task->id)->get();
+            return response(['files' => $files, "message" => 'yes', "id" => $student_task->id ]);
+        }else{
+            $student = Student::find($student_id);
+            $student->tasks()->attach($task_id);
+            $student->save();
+            return response(['files' => [], "message" => 'nope']);
+        }
+
+
+
+
+
+
     }
 }

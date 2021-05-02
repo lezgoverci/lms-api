@@ -36,20 +36,23 @@ class CourseSeeder extends Seeder
                 'schedule' => 'May 24 - May 27'
             ]
         );
-        DB::table('courses')->insert(
-            [
-                'name' => 'Creating A Digital DNA Through Agile and Lean Culture',
-                'cover_photo' => '/storage/files/week4.png',
-                'schedule' => 'May 31 - June 3'
-            ]
-        );
+
         DB::table('courses')->insert(
             [
                 'name' => 'Developing A Future-Ready Technology Architecture',
-                'cover_photo' => '/storage/files/week5.png',
+                'cover_photo' => '/storage/files/week4.png',
                 'schedule' => 'June 7 - June 10'
             ]
         );
+
+        DB::table('courses')->insert(
+            [
+                'name' => 'Creating A Digital DNA Through Agile and Lean Culture',
+                'cover_photo' => '/storage/files/week5.png',
+                'schedule' => 'May 31 - June 3'
+            ]
+        );
+
         DB::table('courses')->insert(
             [
                 'name' => 'Embracing Intrapreneurial Mindset and Design Thinking',

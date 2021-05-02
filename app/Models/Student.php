@@ -26,9 +26,6 @@ class Student extends Model
         return $this->belongsToMany(Task::class);
     }
 
-    public function files(){
-        return $this->hasManyThrough(File::class, Task::class);
-    }
 
     public function user(){
         return $this->belongsTo(User::class);
