@@ -95,6 +95,8 @@ class TaskController extends Controller
 
                     $newfile = new File;
                     $newfile->path = $url;
+                    $newfile->filename = $file->getClientOriginalName();
+                    $newfile->filetype = $file->getClientOriginalExtension();
                     $newfile->student_task_id = $student_task->id;
                     $newfile->save();
                 }
@@ -118,10 +120,12 @@ class TaskController extends Controller
                         $path = Storage::putFile('public/files', $file);
                         $url = Storage::url($path);
 
-                        $file = new File;
-                        $file->path = $url;
-                        $file->student_task_id = $student_task->id;
-                        $file->save();
+                        $newfile = new File;
+                        $newfile->path = $url;
+                        $newfile->filename = $file->getClientOriginalName();
+                        $newfile->filetype = $file->getClientOriginalExtension();
+                        $newfile->student_task_id = $student_task->id;
+                        $newfile->save();
                     }
                     return response(['message' => 'ok']);
                 }

@@ -16,6 +16,8 @@ class CreateMaterialsTable extends Migration
         Schema::create('materials', function (Blueprint $table) {
             $table->id();
             $table->string('path');
+            $table->string('filename');
+            $table->string('filetype');
             $table->integer('task_id');
             $table->timestamps();
             $table->softDeletes();
