@@ -1,12 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use App\Models\File;
 use App\Models\Task;
 use App\Models\Student;
 use App\Models\StudentTask;
+use SebastianBergmann\Environment\Console;
 
 class TaskController extends Controller
 {
@@ -40,9 +42,9 @@ class TaskController extends Controller
     public function show($id)
     {
         $task = Task::find($id)->with('files')->first();
-        if($task){
+        if ($task) {
             return response(['task' => $task]);
-        }else{
+        } else {
             return response(['message' => 'Task not found'], 404);
         }
     }
@@ -78,39 +80,58 @@ class TaskController extends Controller
      */
     public function uploadFile(Request $request)
     {
-        $file =  $request->file('file');
-        $path = Storage::putFile('public/files', $file);
-        $url = Storage::url($path);
 
 
-        $student_task = StudentTask::where('student_id', '=', $request->student_id)->where('task_id','=', $request->task_id)->first();
+        $student_task = StudentTask::where('student_id', '=', $request->student_id)->where('task_id', '=', $request->task_id)->first();
 
-        if($student_task){
-            $file = new File;
-            $file->path = $url;
-            $file->student_task_id = $student_task->id;
-            $file->save();
-            return response(['file' => $file,'message'=>'has student task']);
-        }else{
+        if ($student_task) {
+
+            if ($request->hasFile('files')) {
+                $files =  $request->file('files');
+
+                foreach ($files as $file) {
+                    $path = Storage::putFile('public/files', $file);
+                    $url = Storage::url($path);
+
+                    $newfile = new File;
+                    $newfile->path = $url;
+                    $newfile->student_task_id = $student_task->id;
+                    $newfile->save();
+                }
+
+
+
+                return response(['message' => 'ok']);
+            } else {
+                return response(["message" => "No files in request"]);
+            }
+        } else {
             $student = Student::find($request->student_id);
             $student->tasks()->attach($request->task_id);
             $student->save();
 
-            $temp_student_task = StudentTask::where('student_id', '=', $request->student_id)->where('task_id','=', $request->task_id)->first();
-            if($temp_student_task ){
-                $file = new File;
-                $file->path = $url;
-                $file->student_task_id = $temp_student_task->id;
-                $file->save();
-                return response(['file' => $file, "message" => 'from no student task']);
-            }else{
+            $temp_student_task = StudentTask::where('student_id', '=', $request->student_id)->where('task_id', '=', $request->task_id)->first();
+            if ($temp_student_task) {
+                if ($request->hasFile('files')) {
+                    $files =  $request->file('files');
+                    foreach ($files as $file) {
+                        $path = Storage::putFile('public/files', $file);
+                        $url = Storage::url($path);
+
+                        $file = new File;
+                        $file->path = $url;
+                        $file->student_task_id = $student_task->id;
+                        $file->save();
+                    }
+                    return response(['message' => 'ok']);
+                }
+                else {
+                    return response(["message" => "No files in request"]);
+                }
+            } else {
                 return response(['message' => 'cannot process'], 402);
             }
-
         }
-
-
-
     }
 
     /**
@@ -131,23 +152,17 @@ class TaskController extends Controller
         // $student = Student::find($student_id);
         // $task = Task::find($task_id);
 
-        $student_task = StudentTask::where('student_id', '=', $student_id)->where('task_id','=', $task_id)->first();
+        $student_task = StudentTask::where('student_id', '=', $student_id)->where('task_id', '=', $task_id)->first();
 
 
-        if( $student_task){
+        if ($student_task) {
             $files = File::where('student_task_id', '=', $student_task->id)->get();
-            return response(['files' => $files, "message" => 'yes', "id" => $student_task->id ]);
-        }else{
+            return response(['files' => $files, "message" => 'yes', "id" => $student_task->id]);
+        } else {
             $student = Student::find($student_id);
             $student->tasks()->attach($task_id);
             $student->save();
             return response(['files' => [], "message" => 'nope']);
         }
-
-
-
-
-
-
     }
 }
