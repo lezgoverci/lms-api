@@ -41,7 +41,8 @@ class CourseSeeder extends Seeder
             [
                 'name' => 'Developing A Future-Ready Technology Architecture',
                 'cover_photo' => '/storage/files/week4.png',
-                'schedule' => 'June 7 - June 10'
+                'schedule' => 'May 31 - June 3'
+
             ]
         );
 
@@ -49,7 +50,7 @@ class CourseSeeder extends Seeder
             [
                 'name' => 'Creating A Digital DNA Through Agile and Lean Culture',
                 'cover_photo' => '/storage/files/week5.png',
-                'schedule' => 'May 31 - June 3'
+                'schedule' => 'June 7 - June 10'
             ]
         );
 
