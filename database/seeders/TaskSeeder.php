@@ -18,6 +18,7 @@ class TaskSeeder extends Seeder
             [
                 'title' => 'Title goes here',
                 'description' => 'Description goes here',
+                'deadline' => '12 May 2021 (Wednesday)',
                 'module_id' => 1
             ]
         );
@@ -26,6 +27,7 @@ class TaskSeeder extends Seeder
             [
                 'title' => 'Title goes here',
                 'description' => 'Description goes here',
+                'deadline' => '12 May 2021 (Wednesday)',
                 'module_id' => 2
             ]
         );
@@ -33,6 +35,7 @@ class TaskSeeder extends Seeder
             [
                 'title' => 'Title goes here',
                 'description' => 'Description goes here',
+                'deadline' => '19 May 2021 (Wednesday)',
                 'module_id' => 3
             ]
         );
@@ -40,6 +43,7 @@ class TaskSeeder extends Seeder
             [
                 'title' => 'Title goes here',
                 'description' => 'Description goes here',
+                'deadline' => '19 May 2021 (Wednesday)',
                 'module_id' => 4
             ]
         );
@@ -47,6 +51,7 @@ class TaskSeeder extends Seeder
             [
                 'title' => 'Title goes here',
                 'description' => 'Description goes here',
+                'deadline' => '26 May 2021 (Wednesday)',
                 'module_id' => 5
             ]
         );
@@ -54,6 +59,7 @@ class TaskSeeder extends Seeder
             [
                 'title' => 'Title goes here',
                 'description' => 'Description goes here',
+                'deadline' => '26 May 2021 (Wednesday)',
                 'module_id' => 6
             ]
         );
@@ -61,6 +67,7 @@ class TaskSeeder extends Seeder
             [
                 'title' => 'Title goes here',
                 'description' => 'Description goes here',
+                'deadline' => '2 June 2021 (Wednesday)',
                 'module_id' => 7
             ]
         );
@@ -68,6 +75,7 @@ class TaskSeeder extends Seeder
             [
                 'title' => 'Title goes here',
                 'description' => 'Description goes here',
+                'deadline' => '2 June 2021 (Wednesday)',
                 'module_id' => 8
             ]
         );
@@ -76,6 +84,7 @@ class TaskSeeder extends Seeder
             [
                 'title' => 'Title goes here',
                 'description' => 'Description goes here',
+                'deadline' => '9 June 2021 (Wednesday)',
                 'module_id' => 9
             ]
         );
@@ -84,6 +93,7 @@ class TaskSeeder extends Seeder
             [
                 'title' => 'Title goes here',
                 'description' => 'Description goes here',
+                'deadline' => '9 June 2021 (Wednesday)',
                 'module_id' => 10
             ]
         );
@@ -92,6 +102,7 @@ class TaskSeeder extends Seeder
             [
                 'title' => 'Title goes here',
                 'description' => 'Description goes here',
+                'deadline' => '16 June 2021 (Wednesday)',
                 'module_id' => 11
             ]
         );
@@ -100,6 +111,7 @@ class TaskSeeder extends Seeder
             [
                 'title' => 'Title goes here',
                 'description' => 'Description goes here',
+                'deadline' => '16 June 2021 (Wednesday)',
                 'module_id' => 12
             ]
         );
@@ -107,6 +119,7 @@ class TaskSeeder extends Seeder
             [
                 'title' => 'Title goes here',
                 'description' => 'Description goes here',
+                'deadline' => '23 June 2021 (Wednesday)',
                 'module_id' => 13
             ]
         );
@@ -114,6 +127,7 @@ class TaskSeeder extends Seeder
             [
                 'title' => 'Title goes here',
                 'description' => 'Description goes here',
+                'deadline' => '23 June 2021 (Wednesday)',
                 'module_id' => 14
             ]
         );
@@ -121,6 +135,7 @@ class TaskSeeder extends Seeder
             [
                 'title' => 'Title goes here',
                 'description' => 'Description goes here',
+                'deadline' => '30 June 2021 (Wednesday)',
                 'module_id' => 15
             ]
         );
@@ -128,6 +143,7 @@ class TaskSeeder extends Seeder
             [
                 'title' => 'Title goes here',
                 'description' => 'Description goes here',
+                'deadline' => '30 June 2021 (Wednesday)',
                 'module_id' => 16
             ]
         );
