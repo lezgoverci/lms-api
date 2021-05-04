@@ -68,5 +68,116 @@ class MaterialSeeder extends Seeder
 
             ]
         );
+
+        DB::table('materials')->insert(
+            [
+                'path' => '/storage/files/week2/DONALD%20(1)%20AIDT%20Wk2%20Pre-Reading%20No.%201%20.pdf',
+                'filename' => 'DONALD (1) AIDT Wk2 Pre-Reading No. 1 .pdf',
+                'filetype' => 'PDF',
+                'task_id' => 3
+
+            ]
+        );
+        DB::table('materials')->insert(
+            [
+                'path' => '/storage/files/week2/DONALD%20(2)%20AIDT%20Wk2%20Pre-Reading%20No.%202%20.pdf',
+                'filename' => 'DONALD (2) AIDT Wk2 Pre-Reading No. 2 .pdf',
+                'filetype' => 'PDF',
+                'task_id' => 3
+
+            ]
+        );
+        DB::table('materials')->insert(
+            [
+                'path' => '/storage/files/week2/DONALD%20(3)%20AIDT%20Wk2%20Pre-Reading%20No.%203%20.pdf',
+                'filename' => 'DONALD (3) AIDT Wk2 Pre-Reading No. 3 .pdf',
+                'filetype' => 'PDF',
+                'task_id' => 3
+
+            ]
+        );
+        DB::table('materials')->insert(
+            [
+                'path' => '/storage/files/week2/DONALD%20(4)%20AIDT%20Wk2%20Pre-Reading No.%204%20.pdf',
+                'filename' => 'DONALD (4) AIDT Wk2 Pre-Reading No. 4 .pdf',
+                'filetype' => 'PDF',
+                'task_id' => 3
+
+            ]
+        );
+        DB::table('materials')->insert(
+            [
+                'path' => '/storage/files/week2/DONALD%20(5)%20AIDT%20Wk2%20Case%20Study%20Analysis%20Report.pdf',
+                'filename' => 'DONALD (5) AIDT Wk2 Case Study Analysis Report.pdf',
+                'filetype' => 'PDF',
+                'task_id' => 3
+
+            ]
+        );
+        DB::table('materials')->insert(
+            [
+                'path' => '/storage/files/week2/DONALD%20(6)%20AIDT%20Wk2%20Workplace%20Project%20Assignment%20.pptx',
+                'filename' => 'DONALD (6) AIDT Wk2 Workplace Project Assignment .pptx',
+                'filetype' => 'PPTX',
+                'task_id' => 3
+
+            ]
+        );
+
+        DB::table('materials')->insert(
+            [
+                'path' => '/storage/files/week3/EDWIN%20(1)%20AIDT%20Wk3%20Pre-Reading%20Assignment%20No.%201.pdf',
+                'filename' => 'EDWIN (1) AIDT Wk3 Pre-Reading Assignment No. 1.pdf',
+                'filetype' => 'PDF',
+                'task_id' => 5
+
+            ]
+        );
+
+        DB::table('materials')->insert(
+            [
+                'path' => '/storage/files/week3/EDWIN%20(2)%20AIDT%20Wk3%20Pre-Reading%20Assignment%20No.%202.pdf',
+                'filename' => 'EDWIN (2) AIDT Wk3 Pre-Reading Assignment No. 2.pdf',
+                'filetype' => 'PDF',
+                'task_id' => 5
+
+            ]
+        );
+        DB::table('materials')->insert(
+            [
+                'path' => '/storage/files/week3/EDWIN%20(3)%20AIDT%20Wk3%20Pre-Reading%20Assignment No.%203.pdf',
+                'filename' => 'EDWIN (3) AIDT Wk3 Pre-Reading Assignment No. 3.pdf',
+                'filetype' => 'PDF',
+                'task_id' => 5
+
+            ]
+        );
+        DB::table('materials')->insert(
+            [
+                'path' => '/storage/files/week3/EDWIN%20(4)%20AIDT%20Wk3%20Pre-Reading%20Assignment%20No.%204.pdf',
+                'filename' => 'EDWIN (4) AIDT Wk3 Pre-Reading Assignment No. 4.pdf',
+                'filetype' => 'PDF',
+                'task_id' => 5
+
+            ]
+        );
+        DB::table('materials')->insert(
+            [
+                'path' => '/storage/files/week3/EDWIN%20(5)%20AIDT%20Wk3%20Case%20Study%20Analysis%20Report.pdf',
+                'filename' => 'EDWIN (5) AIDT Wk3 Case Study Analysis Report.pdf',
+                'filetype' => 'PDF',
+                'task_id' => 5
+
+            ]
+        );
+        DB::table('materials')->insert(
+            [
+                'path' => '/storage/files/week3/EDWIN%20(6)%20AIDT%20Wk3%20Workplace%20Project%20Assignment%20.pptx',
+                'filename' => 'EDWIN (6) AIDT Wk3 Workplace Project Assignment .pptx',
+                'filetype' => 'PPTX',
+                'task_id' => 5
+
+            ]
+        );
     }
 }

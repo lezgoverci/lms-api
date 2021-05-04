@@ -71,5 +71,66 @@ class TaskSeeder extends Seeder
                 'module_id' => 8
             ]
         );
+
+        DB::table('tasks')->insert(
+            [
+                'title' => 'Title goes here',
+                'description' => 'Description goes here',
+                'module_id' => 9
+            ]
+        );
+
+        DB::table('tasks')->insert(
+            [
+                'title' => 'Title goes here',
+                'description' => 'Description goes here',
+                'module_id' => 10
+            ]
+        );
+
+        DB::table('tasks')->insert(
+            [
+                'title' => 'Title goes here',
+                'description' => 'Description goes here',
+                'module_id' => 11
+            ]
+        );
+
+        DB::table('tasks')->insert(
+            [
+                'title' => 'Title goes here',
+                'description' => 'Description goes here',
+                'module_id' => 12
+            ]
+        );
+        DB::table('tasks')->insert(
+            [
+                'title' => 'Title goes here',
+                'description' => 'Description goes here',
+                'module_id' => 13
+            ]
+        );
+        DB::table('tasks')->insert(
+            [
+                'title' => 'Title goes here',
+                'description' => 'Description goes here',
+                'module_id' => 14
+            ]
+        );
+        DB::table('tasks')->insert(
+            [
+                'title' => 'Title goes here',
+                'description' => 'Description goes here',
+                'module_id' => 15
+            ]
+        );
+        DB::table('tasks')->insert(
+            [
+                'title' => 'Title goes here',
+                'description' => 'Description goes here',
+                'module_id' => 16
+            ]
+        );
+
     }
 }
