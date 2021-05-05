@@ -93,7 +93,7 @@ class UserSeeder extends Seeder
             [
                 'firstName' => 'Vercillius Jr.',
                 'lastName' => 'Mila',
-                'email' => 'vercilliusjrmila@gmail.com',
+                'email' => 'vercilliusjrmila.dev@gmail.com',
                 'password' => Hash::make('stinkeye88.Aidt')
             ]
         );
