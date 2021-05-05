@@ -80,5 +80,22 @@ class UserSeeder extends Seeder
                 'password' => Hash::make('password')
             ]
         );
+
+        DB::table('users')->insert(
+            [
+                'firstName' => 'Tammie',
+                'lastName' => 'Chua',
+                'email' => 'tammie@aidtlearn.com',
+                'password' => Hash::make('aidt2021')
+            ]
+        );
+        DB::table('users')->insert(
+            [
+                'firstName' => 'Vercillius Jr.',
+                'lastName' => 'Mila',
+                'email' => 'vercilliusjrmila@gmail.com',
+                'password' => Hash::make('stinkeye88.Aidt')
+            ]
+        );
     }
 }
