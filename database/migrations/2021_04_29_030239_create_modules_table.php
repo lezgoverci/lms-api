@@ -17,6 +17,7 @@ class CreateModulesTable extends Migration
             $table->id();
             $table->integer('course_id');
             $table->string('title');
+            $table->integer('number');
             $table->string('date')->nullable();
             $table->string('time')->nullable();
             $table->timestamps();
