@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Storage;
+use App\Models\Material;
 
 use Illuminate\Http\Request;
 
@@ -24,7 +26,30 @@ class MaterialController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $data = $request->validate([
+            'week' => 'required|integer',
+            'task_id' => 'required|integer',
+            'file' => 'required|file',
+        ]);
+
+
+
+        $file =  $request->file('file');
+        $week = $request->week;
+        $task_id = $request->task_id;
+
+        $path = Storage::putFile('public/files/week' . $week, $file);
+        $url = Storage::url($path);
+
+        $newMaterial = new Material;
+        $newMaterial->path = $url;
+        $newMaterial->filename = $file->getClientOriginalName();
+        $newMaterial->filetype = $file->getClientOriginalExtension();
+        $newMaterial->task_id = $task_id;
+        $newMaterial->save();
+
+        return response(['material' => $newMaterial]);
     }
 
     /**
