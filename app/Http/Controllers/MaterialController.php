@@ -39,7 +39,7 @@ class MaterialController extends Controller
         $week = $request->week;
         $task_id = $request->task_id;
 
-        $path = Storage::putFile('public/files/week' . $week, $file);
+        $path = Storage::putFileAs('public/files/week' . $week, $file,$file->getClientOriginalName());
         $url = Storage::url($path);
 
         $newMaterial = new Material;
